@@ -18,7 +18,7 @@ describe("ColorMixer Component", () => {
   test("muestra las estadísticas iniciales", () => {
     render(<ColorMixer />);
     expect(screen.getByText(/Mezclas Realizadas/i)).toBeInTheDocument();
-    expect(screen.getByText(/Color Secundarios Creados/i)).toBeInTheDocument();
+    expect(screen.getByText(/Colores Secundarios Creados/i)).toBeInTheDocument();
     expect(screen.getByText(/Desafíos Completados/i)).toBeInTheDocument();
   });
 
