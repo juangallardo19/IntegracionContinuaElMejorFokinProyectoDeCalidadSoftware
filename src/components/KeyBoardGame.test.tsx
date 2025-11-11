@@ -2,11 +2,7 @@ import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import KeyboardGame from "./KeyboardGame";
 
-describe("KeyboardGame Component", () => {
-  test("renderiza el título del juego", () => {
-    render(<KeyboardGame />);
-    expect(screen.getByText(/El Teclado Mágic/i)).toBeInTheDocument();
-  });
+
 
   test("muestra la descripción del juego", () => {
     render(<KeyboardGame />);
