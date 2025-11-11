@@ -37,7 +37,7 @@ describe("ColorMixer Component", () => {
 
   test("muestra el botón de modo desafío", () => {
     render(<ColorMixer />);
-    expect(screen.getByRole("button", { name: /Activar Modo Desafío/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /Activar  Desafío/i })).toBeInTheDocument();
   });
 
   test("muestra información educativa sobre colores primarios", () => {
