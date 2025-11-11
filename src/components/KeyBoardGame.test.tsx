@@ -60,7 +60,7 @@ describe("KeyboardGame Component", () => {
     const startButton = screen.getByRole("button", { name: /Comenzar a Practicar/i });
     fireEvent.click(startButton);
     
-    expect(screen.getByText(/Observa la tecla resaltada en rojo y presiónala en tu teclado/i)).toBeInTheDocument();
+    expect(screen.getByText(/Observa la tecla resaltada en verde y presiónala en tu teclado/i)).toBeInTheDocument();
   });
 
   test("aumenta el score cuando se presiona la tecla correcta", async () => {
