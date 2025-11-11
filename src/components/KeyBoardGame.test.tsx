@@ -18,7 +18,7 @@ describe("KeyboardGame Component", () => {
     expect(screen.getByRole("button", { name: /Comenzar a Practicar/i })).toBeInTheDocument();
   });
 
-  test("inicia el juego al hacer clic en comenzar", () => {
+  test("inicia el juo al hacer clic en comenzar", () => {
     render(<KeyboardGame />);
     const startButton = screen.getByRole("button", { name: /Comenzar a Practicar/i });
     fireEvent.click(startButton);
