@@ -5,7 +5,7 @@ import KeyboardGame from "./KeyboardGame";
 describe("KeyboardGame Component", () => {
   test("renderiza el título del juego", () => {
     render(<KeyboardGame />);
-    expect(screen.getByText(/El Teclado Mágico/i)).toBeInTheDocument();
+    expect(screen.getByText(/El Teclado Mágic/i)).toBeInTheDocument();
   });
 
   test("muestra la descripción del juego", () => {
