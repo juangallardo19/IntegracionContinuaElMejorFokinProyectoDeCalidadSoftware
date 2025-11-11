@@ -68,7 +68,7 @@ describe("ColorMixer Component", () => {
 
   test("muestra información sobre temperatura del color", () => {
     render(<ColorMixer />);
-    expect(screen.getByText(/Temperatura del Color/i)).toBeInTheDocument();
+    expect(screen.getByText(/Temperatura del Colores/i)).toBeInTheDocument();
   });
 
   test("crea un color al seleccionar dos colores primarios", async () => {
