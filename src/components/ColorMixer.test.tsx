@@ -10,7 +10,7 @@ describe("ColorMixer Component", () => {
 
   test("muestra los tres colores primarios", () => {
     render(<ColorMixer />);
-    expect(screen.getByText("Rojo")).toBeInTheDocument();
+    expect(screen.getByText("ojo")).toBeInTheDocument();
     expect(screen.getByText("Azul")).toBeInTheDocument();
     expect(screen.getByText("Amarillo")).toBeInTheDocument();
   });
