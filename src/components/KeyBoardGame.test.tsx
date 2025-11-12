@@ -36,15 +36,16 @@ describe("KeyboardGame Component", () => {
     expect(screen.getByText(/Puntos/i)).toBeInTheDocument();
     expect(screen.getByText(/Errores/i)).toBeInTheDocument();
   });
-
+  
   test("muestra el teclado visual cuando el juego está activo", () => {
     render(<KeyboardGame />);
     const startButton = screen.getByRole("button", { name: /Comenzar a Practicar/i });
     fireEvent.click(startButton);
     
-    expect(screen.getAllByText("Q")).toBeInTheDocument();
-    expect(screen.getAllByText("W")).toBeInTheDocument();
-    expect(screen.getAllByText("E")).toBeInTheDocument();
+    // Opción 1: Verificar el primer elemento del array
+    expect(screen.getAllByText("Q")[0]).toBeInTheDocument();
+    expect(screen.getAllByText("W")[0]).toBeInTheDocument();
+    expect(screen.getAllByText("E")[0]).toBeInTheDocument();
   });
 
   test("muestra mensaje de retroalimentación", () => {
