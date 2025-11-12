@@ -42,9 +42,9 @@ describe("KeyboardGame Component", () => {
     const startButton = screen.getByRole("button", { name: /Comenzar a Practicar/i });
     fireEvent.click(startButton);
     
-    expect(screen.getByText("Q")).toBeInTheDocument();
-    expect(screen.getByText("W")).toBeInTheDocument();
-    expect(screen.getByText("E")).toBeInTheDocument();
+    expect(screen.getAllByText("Q")).toBeInTheDocument();
+    expect(screen.getAllByText("W")).toBeInTheDocument();
+    expect(screen.getAllByText("E")).toBeInTheDocument();
   });
 
   test("muestra mensaje de retroalimentación", () => {
