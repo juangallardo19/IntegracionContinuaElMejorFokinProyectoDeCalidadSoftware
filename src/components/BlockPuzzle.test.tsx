@@ -3,7 +3,9 @@ import "@testing-library/jest-dom";
 import BlockPuzzle from "./BlockPuzzle";
 
 describe("BlockPuzzle Component", () => {
-  test("renderizaetByText(/Rompecabezas de Bloques/i)).toBeInTheDocument();
+  test("renderiza el título del componente", () => {
+    render(<BlockPuzzle />);
+    expect(screen.getByText(/Rompecabezas de Bloques/i)).toBeInTheDocument();
   });
 
   test("muestra el nivel actual correctamente", () => {
