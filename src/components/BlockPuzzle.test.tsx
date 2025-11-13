@@ -1,4 +1,4 @@
-import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import BlockPuzzle from "./BlockPuzzle";
 
@@ -122,7 +122,7 @@ describe("BlockPuzzle Component", () => {
     expect(screen.getByText(/Usa tu pensamiento espacial/i)).toBeInTheDocument();
   });
 
-  test("el botón de nivel siguiente aparece si no es el primer nivel", async () => {
+  test("el botón de nivel siguiente aparece si no es el primer nivel", () => {
     render(<BlockPuzzle />);
     
     // Inicialmente no debería estar visible en nivel 1
