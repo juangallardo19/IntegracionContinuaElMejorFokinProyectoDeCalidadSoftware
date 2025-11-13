@@ -447,7 +447,7 @@ export default function ColorMixer() {
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
                 {Array.from(secondaryColorsCreated).map((colorName) => {
                   const colorKey = Object.entries(SECONDARY_COLORS).find(
-                    ([, color]) => color.name === colorName
+                    ([_, color]) => color.name === colorName
                   )?.[0] as SecondaryColorKey | undefined;
 
                   if (!colorKey) return null;

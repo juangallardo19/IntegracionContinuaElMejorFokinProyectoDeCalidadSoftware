@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 import Sidebar from "./Sidebar";
-import Navbar from "./Navbar";
+import BackgroundMusic from "./BackgroundMusic";
 
 export default function Layout() {
   return (
@@ -10,9 +10,6 @@ export default function Layout() {
 
       {/* Contenedor principal */}
       <div style={{ display: 'flex', flexDirection: 'column', flex: 1 }}>
-        {/* Navbar arriba */}
-        <Navbar />
-
         {/* Contenido dinámico (cada vista) */}
         <main style={{
           flex: 1,
@@ -22,6 +19,9 @@ export default function Layout() {
           <Outlet />
         </main>
       </div>
+
+      {/* Música de fondo */}
+      <BackgroundMusic />
     </div>
   );
 }

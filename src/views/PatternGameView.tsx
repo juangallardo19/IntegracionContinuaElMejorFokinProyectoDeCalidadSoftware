@@ -1,63 +1,72 @@
-import { useState } from "react";
+import { motion } from "framer-motion";
 import PatternSequence from "../components/PatternSequence";
 import BlockPuzzle from "../components/BlockPuzzle";
 
 export default function PatternGameView() {
-  const [activeGame, setActiveGame] = useState<"patterns" | "puzzle">("patterns");
-
   return (
-    <div style={{ minHeight: '100vh', backgroundColor: 'var(--gray-100)', padding: '2rem 1rem' }}>
-      <div className="educational-container">
-        {/* Hero Section */}
-        <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          <h1 style={{
-            fontSize: '2.5rem',
-            fontWeight: 'bold',
-            marginBottom: '1rem',
-            color: 'var(--ucc-blue)'
-          }}>
-            Pensamiento Lógico
-          </h1>
-          <p style={{
-            fontSize: '1.125rem',
-            color: 'var(--gray-600)',
-            maxWidth: '42rem',
-            margin: '0 auto'
-          }}>
-            Desarrolla tu razonamiento lógico identificando patrones y resolviendo rompecabezas
-          </p>
-        </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.3 }}
+      style={{
+        minHeight: '100vh',
+        backgroundColor: 'var(--gray-100)',
+        padding: '2rem 1rem',
+        position: 'relative'
+      }}
+    >
+      {/* Imagen de fondo PNG con opacidad reducida */}
+      <div style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        bottom: 0,
+        backgroundImage: 'url(/images/logic-background.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        opacity: 0.3,
+        zIndex: 0
+      }} />
 
-        {/* Selector de juego */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '2rem' }}>
-          <button
-            onClick={() => setActiveGame("patterns")}
-            className={`btn ${activeGame === "patterns" ? "btn-primary" : "btn-secondary"}`}
-            style={{ minWidth: '200px' }}
-          >
-            <svg className="icon" style={{ marginRight: '0.5rem' }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
-            </svg>
-            Secuencias y Patrones
-          </button>
-          <button
-            onClick={() => setActiveGame("puzzle")}
-            className={`btn ${activeGame === "puzzle" ? "btn-primary" : "btn-secondary"}`}
-            style={{ minWidth: '200px' }}
-          >
-            <svg className="icon" style={{ marginRight: '0.5rem' }} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <rect x="3" y="3" width="18" height="18" rx="2" />
-              <path d="M3 9h18M9 21V9" />
-            </svg>
-            Rompecabezas de Bloques
-          </button>
-        </div>
+      <div className="educational-container" style={{ position: 'relative', zIndex: 1 }}>
+        {/* Rompecabezas de Bloques - Primero */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
+          <BlockPuzzle />
+        </motion.div>
 
-        {/* Componente del juego activo */}
-        {activeGame === "patterns" ? <PatternSequence /> : <BlockPuzzle />}
+        {/* Espacio entre componentes */}
+        <div style={{ height: '3rem' }} />
+
+        {/* Secuencias y Patrones - Segundo */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+        >
+          <PatternSequence />
+        </motion.div>
 
         {/* Información adicional */}
-        <div className="feature-grid">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+          className="feature-grid"
+          style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.85)',
+            padding: '2rem',
+            borderRadius: '1rem',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            marginBottom: '2rem'
+          }}
+        >
           <div className="feature-card">
             <svg className="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
@@ -91,10 +100,21 @@ export default function PatternGameView() {
               Mejora tu precisión identificando los patrones correctos
             </p>
           </div>
-        </div>
+        </motion.div>
 
         {/* Sección educativa */}
-        <div className="educational-card" style={{ marginTop: '2rem' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.7 }}
+          className="educational-card"
+          style={{
+            marginTop: '2rem',
+            backgroundColor: 'rgba(255, 255, 255, 0.85)',
+            borderRadius: '1rem',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)'
+          }}
+        >
           <div className="educational-card-header">
             <h3 style={{ fontSize: '1.25rem', fontWeight: '600', margin: 0 }}>
               Qué son los Patrones
@@ -127,10 +147,22 @@ export default function PatternGameView() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Tips para mejorar */}
-        <div className="help-section">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.9 }}
+          className="help-section"
+          style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.85)',
+            padding: '2rem',
+            borderRadius: '1rem',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            marginTop: '2rem'
+          }}
+        >
           <h3 className="help-title">Consejos para Identificar Patrones</h3>
           <ul className="help-list">
             <li>Observa todos los elementos de la secuencia con atención</li>
@@ -139,10 +171,22 @@ export default function PatternGameView() {
             <li>En figuras: ¿se repiten?, ¿cuál es el orden?</li>
             <li>Practica mucho, cada patrón te hace mejor</li>
           </ul>
-        </div>
+        </motion.div>
 
         {/* Beneficios educativos */}
-        <div className="info-panel success" style={{ marginTop: '2rem' }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1.1 }}
+          className="info-panel success"
+          style={{
+            marginTop: '2rem',
+            backgroundColor: 'rgba(255, 255, 255, 0.85)',
+            borderRadius: '1rem',
+            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+            padding: '2rem'
+          }}
+        >
           <h4 className="info-title">Beneficios de Trabajar con Patrones</h4>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '1rem', marginTop: '1rem' }}>
             <div>
@@ -158,8 +202,8 @@ export default function PatternGameView() {
               <strong>Resolución de problemas:</strong> Aprende a enfrentar desafíos
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 }
