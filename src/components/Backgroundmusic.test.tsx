@@ -11,6 +11,8 @@ jest.mock("framer-motion", () => ({
       </button>
     ),
     svg: ({ children, ...props }: any) => {
+      // Destructurar para eliminar props de animación que no se usan en tests
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { initial, animate, exit, transition, whileHover, whileTap, ...rest } = props;
       return <svg {...rest}>{children}</svg>;
     },
