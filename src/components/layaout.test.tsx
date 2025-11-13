@@ -10,9 +10,9 @@ jest.mock("./Sidebar", () => {
   };
 });
 
-jest.mock("./Navbar", () => {
-  return function Navbar() {
-    return <div data-testid="navbar">Navbar Mock</div>;
+jest.mock("./BackgroundMusic", () => {
+  return function BackgroundMusic() {
+    return <div data-testid="background-music">BackgroundMusic Mock</div>;
   };
 });
 
@@ -24,7 +24,7 @@ describe("Layout Component", () => {
       </BrowserRouter>
     );
     expect(screen.getByTestId("sidebar")).toBeInTheDocument();
-    expect(screen.getByTestId("navbar")).toBeInTheDocument();
+    expect(screen.getByTestId("background-music")).toBeInTheDocument();
   });
 
   test("renderiza el Sidebar", () => {
@@ -36,13 +36,13 @@ describe("Layout Component", () => {
     expect(screen.getByTestId("sidebar")).toBeInTheDocument();
   });
 
-  test("renderiza el Navbar", () => {
+  test("renderiza el BackgroundMusic", () => {
     render(
       <BrowserRouter>
         <Layout />
       </BrowserRouter>
     );
-    expect(screen.getByTestId("navbar")).toBeInTheDocument();
+    expect(screen.getByTestId("background-music")).toBeInTheDocument();
   });
 
   test("tiene la estructura correcta con flex display", () => {

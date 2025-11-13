@@ -1,52 +1,58 @@
-// Este archivo extiende el entorno de prueba de Jest.
+// setupTests.ts
+import '@testing-library/jest-dom';
+import { TextEncoder, TextDecoder } from 'util';
 
-import "@testing-library/jest-dom";
-import { TextEncoder, TextDecoder } from "util";
+// Polyfill para TextEncoder/TextDecoder (necesario para react-router-dom)
+global.TextEncoder = TextEncoder;
+(global as any).TextDecoder = TextDecoder;
 
-// Polyfill para TextEncoder/TextDecoder
-if (typeof global.TextEncoder === "undefined") {
-  (global as any).TextEncoder = TextEncoder;
+// Mock global de Audio
+class MockAudio {
+  volume = 1;
+  muted = false;
+  loop = false;
+  preload = "";
+  src = "";
+  currentTime = 0;
+  duration = 0;
+  paused = true;
+  
+  play = jest.fn(() => Promise.resolve());
+  pause = jest.fn();
+  load = jest.fn();
+  addEventListener = jest.fn();
+  removeEventListener = jest.fn();
 }
 
-if (typeof global.TextDecoder === "undefined") {
-  (global as any).TextDecoder = TextDecoder;
-}
+(global as any).Audio = MockAudio;
 
-Object.defineProperty(window, "matchMedia", {
-  writable: true,
-  value: (query: string) => ({ 
-    matches: false,
-    media: query,
-    onchange: null,
-    addListener: jest.fn(),
-    removeListener: jest.fn(),
-    addEventListener: jest.fn(),
-    removeEventListener: jest.fn(),
-    dispatchEvent: jest.fn(),
-  }),
+// Silenciar warnings específicos de console.error
+const originalError = console.error;
+beforeAll(() => {
+  console.error = (...args: any[]) => {
+    const message = typeof args[0] === 'string' ? args[0] : '';
+    
+    // Silenciar warnings de HTMLMediaElement
+    if (message.includes('Not implemented: HTMLMediaElement')) {
+      return;
+    }
+    
+    // Silenciar warnings de act()
+    if (message.includes('not wrapped in act')) {
+      return;
+    }
+    
+    // Silenciar warnings de whileHover/whileTap de framer-motion
+    if (message.includes('whileHover') || message.includes('whileTap')) {
+      return;
+    }
+    
+    originalError.call(console, ...args);
+  };
 });
 
-Object.defineProperty(window, "localStorage", {
-  value: {
-    getItem: jest.fn(() => null),
-    setItem: jest.fn(),
-    clear: jest.fn(),
-    removeItem: jest.fn(),
-  },
-  writable: true,
+afterAll(() => {
+  console.error = originalError;
 });
 
-Object.defineProperty(document, "documentElement", {
-  value: {
-    classList: {
-      toggle: jest.fn(),
-      add: jest.fn(),
-      remove: jest.fn(),
-    },
-  },
-  writable: true,
-});
-
-Object.defineProperty(document, "dispatchEvent", {
-  value: jest.fn(),
-});
+export {};
