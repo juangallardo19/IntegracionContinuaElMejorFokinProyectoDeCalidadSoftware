@@ -6,7 +6,6 @@ export default function BackgroundMusic() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Intentar reproducir cuando el componente se monta
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
