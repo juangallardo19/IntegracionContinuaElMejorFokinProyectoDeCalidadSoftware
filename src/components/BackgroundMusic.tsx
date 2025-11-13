@@ -6,13 +6,12 @@ export default function BackgroundMusic() {
   const [isPlaying, setIsPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement>(null);
 
-  // Intentar reproducir cuando el componente se monta
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
     // Configurar volumen muy bajo
-    audio.volume = 0.08; // 8% del volumen máximo
+    audio.volume = 0.08; 
 
     // Intentar reproducir automáticamente
     const playAudio = async () => {
@@ -20,7 +19,7 @@ export default function BackgroundMusic() {
         await audio.play();
         setIsPlaying(true);
       } catch {
-        // Si falla la reproducción automática (política del navegador),
+
         // intentar de nuevo en el primer click del usuario
         console.log("Autoplay bloqueado - esperando interacción del usuario");
         const handleFirstInteraction = async () => {
