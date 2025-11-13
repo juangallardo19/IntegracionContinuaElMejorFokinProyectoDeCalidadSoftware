@@ -149,36 +149,43 @@ export default function BlockPuzzle() {
     return true;
   };
 
-  // Colocar pieza en el tablero
-  const placePiece = (piece: Piece, row: number, col: number) => {
-    if (!canPlacePiece(piece.shape, row, col)) return false;
+      // Colocar pieza en el tablero
+    const placePiece = (piece: Piece, row: number, col: number) => {
+      if (!canPlacePiece(piece.shape, row, col)) return false;
 
-    const newBoard = board.map(r => [...r]);
+      const newBoard = board.map(r => [...r]);
 
-    for (let r = 0; r < piece.shape.length; r++) {
-      for (let c = 0; c < piece.shape[r].length; c++) {
-        if (piece.shape[r][c] === 1) {
-          newBoard[row + r][col + c] = piece.id + 1;
+      for (let r = 0; r < piece.shape.length; r++) {
+        for (let c = 0; c < piece.shape[r].length; c++) {
+          if (piece.shape[r][c] === 1) {
+            newBoard[row + r][col + c] = piece.id + 1;
+          }
         }
       }
-    }
 
-    setBoard(newBoard);
-    setPieces(pieces.map(p => p.id === piece.id ? { ...p, placed: true } : p));
+      setBoard(newBoard);
+      setPieces(pieces.map(p => p.id === piece.id ? { ...p, placed: true } : p));
 
-    // Verificar si el tablero está completo
-    if (isBoardComplete(newBoard)) {
-      setShowSuccess(true);
-      setScore(score + 100 * (currentLevel + 1));
-      setTimeout(() => {
-        if (currentLevel < LEVELS.length - 1) {
-          startLevel(currentLevel + 1);
-        }
-      }, 2000);
-    }
+      // 🎯 NUEVO: Sumar puntos por cada pieza colocada
+      const pieceSize = piece.shape.flat().filter(cell => cell === 1).length;
+      const pointsPerPiece = pieceSize * 10; // 10 puntos por cada celda de la pieza
+      setScore(score + pointsPerPiece);
 
-    return true;
-  };
+      // Verificar si el tablero está completo
+      if (isBoardComplete(newBoard)) {
+        setShowSuccess(true);
+        // Bonus adicional por completar el nivel
+        const levelBonus = 100 * (currentLevel + 1);
+        setScore(prevScore => prevScore + levelBonus);
+        setTimeout(() => {
+          if (currentLevel < LEVELS.length - 1) {
+            startLevel(currentLevel + 1);
+          }
+        }, 2000);
+      }
+
+      return true;
+    };
 
   // Verificar si el tablero está completo
   const isBoardComplete = (b: number[][]): boolean => {
