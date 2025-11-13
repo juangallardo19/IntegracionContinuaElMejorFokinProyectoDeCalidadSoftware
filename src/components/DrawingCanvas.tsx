@@ -32,15 +32,6 @@ const hexToRgb = (hex: string): [number, number, number] => {
   ] : [0, 0, 0];
 };
 
-// Función para mezclar dos colores RGB
-const mixColors = (color1: [number, number, number], color2: [number, number, number], ratio: number): [number, number, number] => {
-  return [
-    Math.round(color1[0] * (1 - ratio) + color2[0] * ratio),
-    Math.round(color1[1] * (1 - ratio) + color2[1] * ratio),
-    Math.round(color1[2] * (1 - ratio) + color2[2] * ratio)
-  ];
-};
-
 export default function DrawingCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
