@@ -19,7 +19,7 @@ export default function BackgroundMusic() {
         await audio.play();
         setIsPlaying(true);
       } catch {
-        // Si falla la reproducción automática (política del navegador),
+
         // intentar de nuevo en el primer click del usuario
         console.log("Autoplay bloqueado - esperando interacción del usuario");
         const handleFirstInteraction = async () => {
