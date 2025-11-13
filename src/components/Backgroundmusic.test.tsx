@@ -5,17 +5,16 @@ import BackgroundMusic from "./BackgroundMusic";
 // Mock completo de framer-motion para evitar warnings
 jest.mock("framer-motion", () => ({
   motion: {
-    button: ({ children, onClick, style, title, ...props }: any) => (
-      <button onClick={onClick} style={style} title={title} {...props}>
+    button: ({ children, onClick, style, title }: any) => (
+      <button onClick={onClick} style={style} title={title}>
         {children}
       </button>
     ),
-    svg: ({ children, ...props }: any) => {
-      // Destructurar para eliminar props de animación que no se usan en tests
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { initial, animate, exit, transition, whileHover, whileTap, ...rest } = props;
-      return <svg {...rest}>{children}</svg>;
-    },
+    svg: ({ children, width, height, viewBox, fill, stroke, strokeWidth, strokeLinecap, strokeLinejoin }: any) => (
+      <svg width={width} height={height} viewBox={viewBox} fill={fill} stroke={stroke} strokeWidth={strokeWidth} strokeLinecap={strokeLinecap} strokeLinejoin={strokeLinejoin}>
+        {children}
+      </svg>
+    ),
   },
   AnimatePresence: ({ children }: any) => <>{children}</>,
 }));
