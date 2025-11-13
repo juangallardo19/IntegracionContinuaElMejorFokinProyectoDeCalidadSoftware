@@ -11,7 +11,7 @@ export default function BackgroundMusic() {
     if (!audio) return;
 
     // Configurar volumen muy bajo
-    audio.volume = 0.08; // 8% del volumen máximo
+    audio.volume = 0.08; 
 
     // Intentar reproducir automáticamente
     const playAudio = async () => {
